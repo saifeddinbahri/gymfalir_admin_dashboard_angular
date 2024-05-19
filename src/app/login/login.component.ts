@@ -21,10 +21,12 @@ export class LoginComponent {
   };
 
   sumbit() {
+    console.log("uesls")
     this.loginService.login(this.user.username, this.user.password).subscribe(
       {
         next: response => {
           if(!!response.token) {
+            console.log("yes")
             localStorage.setItem('token', response.token)
             
           }

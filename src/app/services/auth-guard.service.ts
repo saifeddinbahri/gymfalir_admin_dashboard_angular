@@ -22,6 +22,9 @@ export class AuthGuardService {
     return !!localStorage.getItem('token');
   }
 
+ canAccessLogin():boolean {
+  return !this.canActivate();
+ }
  
 }
 
