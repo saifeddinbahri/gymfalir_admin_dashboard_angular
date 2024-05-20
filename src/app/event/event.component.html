@@ -3,14 +3,15 @@
     <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
       <thead class="bg-gray-50">
         <tr>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">image</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Firstname</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Lastname</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Email</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Phone</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Speciality</th>
+         <th scope="col" class="px-6 py-4 font-medium text-gray-900">photo</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">nom</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">date</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Participants</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">start</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">description</th>
+          
           <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-            <button [routerLink] = "['/coach/add']"
+            <button [routerLink] = "['/event/add']"
                     class="hover:shadow-form w-full rounded-md bg-slate-700/90 hover:bg-slate-600/90 py-3 px-8 text-center text-base font-semibold text-white outline-none">
                     Add
                 </button>
@@ -27,25 +28,28 @@
               />
           </td>
           <td class="px-6 py-4">
-           {{ item.firstname }} 
+           {{ item.nom }} 
           </td>
-          <td class="px-6 py-4">{{ item.lastname }}</td>
+          <td class="px-6 py-4">{{ (item.date+"" | date:'yyyy-MM-dd') }}</td>
           <td class="px-6 py-4">
             <div class="flex gap-2">
-              {{ item.email }}
+              {{ item.count }}
             </div>
           </td>
           <td class="px-6 py-4">
             <div class="flex gap-2">
-             {{ item.phone }}
+              {{ item.start }}
             </div>
           </td>
           <td class="px-6 py-4">
-            {{ item.speciality }} 
-           </td>
+            <div class="flex gap-2">
+             {{ item.desc }}
+            </div>
+          </td>
+          
           <td class="px-6 py-4">
             <div class="flex justify-end gap-4">
-              <a x-data="{ tooltip: 'Delete' }"  (click) = "deletecoach(item._id)">
+              <a x-data="{ tooltip: 'Delete' }"  (click) = "deleteevent(item._id)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -62,7 +66,7 @@
                   />
                 </svg>
               </a>
-              <a x-data="{ tooltip: 'Edite' }" [routerLink] = "['/coach/update', item._id]" >
+              <a x-data="{ tooltip: 'Edite' }" [routerLink] = "['/event/update', item._id]" >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

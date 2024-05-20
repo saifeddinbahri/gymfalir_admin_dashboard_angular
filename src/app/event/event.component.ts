@@ -1,28 +1,29 @@
-import { CoachService } from '../services/coach.service';
-import { CoachItems, url } from '../types';
+
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { EventService } from '../services/event.service';
+import { EventItems, url } from '../types';
 
 @Component({
-  selector: 'app-coachs',
+  selector: 'app-event',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './coachs.component.html',
-  styleUrl: './coachs.component.css'
+  templateUrl: './event.component.html',
+  styleUrl: './event.component.css'
 })
-export class CoachsComponent implements OnInit {
+export class EventComponent {
+  constructor(private router: Router, private service: EventService) {}
 
-  constructor(private router: Router, private service: CoachService) {}
-
-  data: CoachItems[] = []
+  
+  data: EventItems[] = []
   imageUrl = url
   ngOnInit(): void {
-     this.service.getAllcoachs().subscribe(
+     this.service.getAllevents().subscribe(
       {
         next: response => {
           if(!!response) {
-           this.data = response
+           this.data = response.events
           }
         },
         error: error => {
@@ -32,8 +33,8 @@ export class CoachsComponent implements OnInit {
     )
   }
 
-  deletecoach(id: String) {
-    this.service.deletecoach(id).subscribe(
+  deleteevent(id: String) {
+    this.service.deleteevent(id).subscribe(
       {
         next: response => {
           if(response.message) {
@@ -53,5 +54,4 @@ export class CoachsComponent implements OnInit {
       this.router.navigate([currentUrl]);
     });
   }
-
 }

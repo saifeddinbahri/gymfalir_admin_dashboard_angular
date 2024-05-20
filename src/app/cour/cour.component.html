@@ -3,14 +3,12 @@
     <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
       <thead class="bg-gray-50">
         <tr>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">image</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Firstname</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Lastname</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Email</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Phone</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900">Speciality</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">npm</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">capacite</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">date</th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">couch</th>
           <th scope="col" class="px-6 py-4 font-medium text-gray-900">
-            <button [routerLink] = "['/coach/add']"
+            <button [routerLink] = "['/cour/add']"
                     class="hover:shadow-form w-full rounded-md bg-slate-700/90 hover:bg-slate-600/90 py-3 px-8 text-center text-base font-semibold text-white outline-none">
                     Add
                 </button>
@@ -19,33 +17,22 @@
       </thead>
       <tbody class="divide-y divide-gray-100 border-t border-gray-100">
         <tr class="hover:bg-gray-50" *ngFor=" let item of data ">
-          <td class="flex gap-3 px-6 py-4 font-normal text-gray-900">
-              <img
-                class="h-[150px] w-[200px] rounded-lg object-cover object-center"
-                [src]="imageUrl+item.photo"
-                alt=""
-              />
-          </td>
+          
           <td class="px-6 py-4">
-           {{ item.firstname }} 
+           {{ item.nom }} 
           </td>
-          <td class="px-6 py-4">{{ item.lastname }}</td>
+          <td class="px-6 py-4">{{ item.count+'/'+item.capacite }}</td>
           <td class="px-6 py-4">
             <div class="flex gap-2">
-              {{ item.email }}
+              {{ (item.date+"" | date:'yyyy-MM-dd') + " from "+ item.start + " to " + item.end }}
             </div>
           </td>
           <td class="px-6 py-4">
-            <div class="flex gap-2">
-             {{ item.phone }}
-            </div>
-          </td>
-          <td class="px-6 py-4">
-            {{ item.speciality }} 
+            {{ item.coach.firstname + " " + item.coach.lastname }} 
            </td>
           <td class="px-6 py-4">
             <div class="flex justify-end gap-4">
-              <a x-data="{ tooltip: 'Delete' }"  (click) = "deletecoach(item._id)">
+              <a x-data="{ tooltip: 'Delete' }"  (click) = "deletecour(item._id)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -62,7 +49,7 @@
                   />
                 </svg>
               </a>
-              <a x-data="{ tooltip: 'Edite' }" [routerLink] = "['/coach/update', item._id]" >
+              <a x-data="{ tooltip: 'Edite' }" [routerLink] = "['/cour/update', item._id]" >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -3,38 +3,31 @@
     <div class="mx-auto w-full max-w-[700px] bg-white px-12 py-5 ">
         <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
             <div class="mb-5">
-                <label for="firstname" class="mb-3 block text-base font-medium text-[#07074D]">
-                    firstname
+                <label for="nom" class="mb-3 block text-base font-medium text-[#07074D]">
+                    nom
                 </label>
-                <input type="text" name="firstname" id="firstname" placeholder="firstname" [(ngModel)] = "formData.firstname"
+                <input type="text" name="nom" id="nom" placeholder="nom" [(ngModel)] = "formData.nom"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
             <div class="mb-5">
-                <label for="lastname" class="mb-3 block text-base font-medium text-[#07074D]">
-                    lastname 
+                <label for="desc" class="mb-3 block text-base font-medium text-[#07074D]">
+                    desc 
                 </label>
-                <input type="text" name="lastname" id="lastname" placeholder="lastname" [(ngModel)] = "formData.lastname"
+                <input type="text" name="desc" id="desc" placeholder="desc" [(ngModel)] = "formData.desc"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
             <div class="mb-5">
-                <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
-                    email
+                <label for="start" class="mb-3 block text-base font-medium text-[#07074D]">
+                    start
                 </label>
-                <input type="email" name="email" id="email" placeholder="email" [(ngModel)] = "formData.email"
+                <input type="number" name="start" id="start" placeholder="start" [(ngModel)] = "formData.start"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
             <div class="mb-5">
-                <label for="phone" class="mb-3 block text-base font-medium text-[#07074D]">
-                    phone
+                <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
+                    date
                 </label>
-                <input type="text" name="phone" id="phone" placeholder="phone" [(ngModel)] = "formData.phone"
-                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-            </div>
-            <div class="mb-5">
-                <label for="speciality" class="mb-3 block text-base font-medium text-[#07074D]">
-                    speciality
-                </label>
-                <input type="text" name="speciality" id="speciality" placeholder="speciality" [(ngModel)] = "formData.speciality"
+                <input type="date" name="date" id="date" placeholder="date" [(ngModel)] = "formData.date"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
             <div class="w-full  ">

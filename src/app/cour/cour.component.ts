@@ -1,28 +1,28 @@
-import { CoachService } from '../services/coach.service';
-import { CoachItems, url } from '../types';
+import { CourItems, url } from '../types';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+import { CourService } from '../services/cour.service';
 
 @Component({
-  selector: 'app-coachs',
+  selector: 'app-cour',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './coachs.component.html',
-  styleUrl: './coachs.component.css'
+  templateUrl: './cour.component.html',
+  styleUrl: './cour.component.css'
 })
-export class CoachsComponent implements OnInit {
+export class CourComponent {
+  constructor(private router: Router, private service: CourService) {}
 
-  constructor(private router: Router, private service: CoachService) {}
-
-  data: CoachItems[] = []
-  imageUrl = url
+  
+  data: CourItems[] = []
   ngOnInit(): void {
-     this.service.getAllcoachs().subscribe(
+     this.service.getAllcours().subscribe(
       {
         next: response => {
           if(!!response) {
-           this.data = response
+            console.log(response)
+           this.data = response.courses
           }
         },
         error: error => {
@@ -32,8 +32,8 @@ export class CoachsComponent implements OnInit {
     )
   }
 
-  deletecoach(id: String) {
-    this.service.deletecoach(id).subscribe(
+  deletecour(id: String) {
+    this.service.deletecour(id).subscribe(
       {
         next: response => {
           if(response.message) {
@@ -53,5 +53,4 @@ export class CoachsComponent implements OnInit {
       this.router.navigate([currentUrl]);
     });
   }
-
 }

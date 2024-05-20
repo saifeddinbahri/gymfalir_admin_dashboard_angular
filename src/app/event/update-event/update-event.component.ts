@@ -2,46 +2,41 @@ import { Component, OnInit, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { CoachService } from '../../services/coach.service';
-
+import { EventService } from '../../services/event.service';
 
 @Component({
-  selector: 'app-update-coach',
+  selector: 'app-update-event',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './update-coach.component.html',
-  styleUrl: './update-coach.component.css'
+  templateUrl: './update-event.component.html',
+  styleUrl: './update-event.component.css'
 })
-export class UpdateCoachComponent {
+export class UpdateEventComponent {
   constructor(private route: ActivatedRoute, private location: Location,
-    private router: Router, private service: CoachService) {}
+    private router: Router, private service: EventService) {}
     id: String = ''
     formData: any = {
-      id:'',
-      firstname: '',
-      lastname: '',
-      email: '',
-      image: null,
-      speciality: String,
-      currentImage:'',
-      phone: String
+      id: '', 
+      nom: '', 
+      desc: '', 
+      date: '', 
+      start: '', 
+      photo: '', 
+      image: null
     };
   
     ngOnInit(): void {
       this.id = this.route.snapshot.paramMap.get('id') ?? ''
-      this.service.getOnecoach(this.id).subscribe(
+      this.service.getOneevent(this.id).subscribe(
         {
           next: response => {
             if(!!response._id) {
-              console.log(response)
              this.formData.id = response._id
-             this.formData.firstname = response.firstname
-             this.formData.lastname = response.lastname
-             this.formData.email = response.email
-             this.formData.speciality = response.speciality
-             this.formData.currentImage = response.photo
-             this.formData.phone = response.phone
-
+             this.formData.nom = response.nom
+             this.formData.desc = response.desc
+             this.formData.date = response.date
+             this.formData.start = response.start+""
+             this.formData.photo = response.photo
             }
           },
           error: error => {
@@ -61,8 +56,9 @@ export class UpdateCoachComponent {
     onSubmit(form: any) {
       if (form.valid) {
         console.log('Form Data:', this.formData);
-        this.service.editcoach(this.formData.id, this.formData.firstname, this.formData.lastname,this.formData.phone, 
-          this.formData.email, this.formData.speciality,this.formData.currentImage, this.formData.image).subscribe(
+        this.service.editevent(this.formData.id, this.formData.nom, this.formData.desc, this.formData.date,
+          this.formData.start, this.formData.photo, this.formData.image
+        ).subscribe(
             {
               next: response => {
                 if(!!response) {
