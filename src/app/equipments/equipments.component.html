@@ -8,35 +8,40 @@
           <th scope="col" class="px-6 py-4 font-medium text-gray-900">Prix</th>
           <th scope="col" class="px-6 py-4 font-medium text-gray-900">Reservation</th>
           <th scope="col" class="px-6 py-4 font-medium text-gray-900">description</th>
-          <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+            <button [routerLink] = "['/equipments/add']"
+                    class="hover:shadow-form w-full rounded-md bg-slate-700/90 hover:bg-slate-600/90 py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                    Add
+                </button>
+          </th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-        <tr class="hover:bg-gray-50">
+        <tr class="hover:bg-gray-50" *ngFor=" let item of data ">
           <td class="flex gap-3 px-6 py-4 font-normal text-gray-900">
               <img
-                class="h-[60 w-[100] rounded-lg object-cover object-center"
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                class="h-[150px] w-[200px] rounded-lg object-cover object-center"
+                [src]="imageUrl+item.image"
                 alt=""
               />
           </td>
           <td class="px-6 py-4">
-            nom name 
+           {{ item.nom }} 
           </td>
-          <td class="px-6 py-4">Product Designer</td>
+          <td class="px-6 py-4">{{ item.prix }}</td>
           <td class="px-6 py-4">
             <div class="flex gap-2">
-              test
+              {{ item.reservation }}
             </div>
           </td>
           <td class="px-6 py-4">
             <div class="flex gap-2">
-              test
+             {{ item.desc }}
             </div>
           </td>
           <td class="px-6 py-4">
             <div class="flex justify-end gap-4">
-              <a x-data="{ tooltip: 'Delete' }" href="#">
+              <a x-data="{ tooltip: 'Delete' }"  (click) = "deleteEquipment(item.id)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -53,7 +58,7 @@
                   />
                 </svg>
               </a>
-              <a x-data="{ tooltip: 'Edite' }" href="#">
+              <a x-data="{ tooltip: 'Edite' }" [routerLink] = "['/equipments/update', item.id]" [state]="{data: item}">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
