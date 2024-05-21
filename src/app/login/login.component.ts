@@ -21,14 +21,17 @@ export class LoginComponent {
   };
 
   sumbit() {
-    console.log("uesls")
     this.loginService.login(this.user.username, this.user.password).subscribe(
       {
         next: response => {
           if(!!response.token) {
-            console.log("yes")
-            localStorage.setItem('token', response.token)
-            
+            if(response.role === 'adherant') {
+              alert("Not allowed")
+            } else {
+              localStorage.setItem('token', response.token)
+              localStorage.setItem('role', response.role)
+              this.router.navigate(['/equipments'])
+            }
           }
         },
         error: error => {

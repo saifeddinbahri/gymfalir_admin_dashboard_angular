@@ -39,4 +39,13 @@ export interface EventItems {
     count: String
 }
 
+export interface UserItems {
+    _id: String,
+    username: String,
+    photo: String,
+    birth: String,
+    email: String,
+    role: String 
+}
+
 export const url = 'http://localhost:3002/image/'

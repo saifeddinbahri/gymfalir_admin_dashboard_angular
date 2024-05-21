@@ -1,27 +1,28 @@
-import { CourItems, url } from '../types';
+
+import { UserItems, url } from '../types';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { Component} from '@angular/core';
-import { CourService } from '../services/cour.service';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-cour',
+  selector: 'app-user',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './cour.component.html',
-  styleUrl: './cour.component.css'
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css'
 })
-export class CourComponent {
-  constructor(private router: Router, private service: CourService) {}
+export class UserComponent {
+  constructor(private router: Router, private service: UserService) {}
 
-  
-  data: CourItems[] = []
+  data: UserItems[] = []
+  imageUrl = url
   ngOnInit(): void {
-     this.service.getAllcours().subscribe(
+     this.service.getAllusers().subscribe(
       {
         next: response => {
           if(!!response) {
-           this.data = response.courses
+           this.data = response
           }
         },
         error: error => {
@@ -31,8 +32,8 @@ export class CourComponent {
     )
   }
 
-  deletecour(id: String) {
-    this.service.deletecour(id).subscribe(
+  deleteuser(id: String) {
+    this.service.deleteuser(id).subscribe(
       {
         next: response => {
           if(response.message) {
@@ -52,4 +53,5 @@ export class CourComponent {
       this.router.navigate([currentUrl]);
     });
   }
+
 }

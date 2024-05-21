@@ -1,13 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CanActivateFn } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private location: Location) { }
   
 
   canActivate(): boolean {
@@ -23,11 +23,33 @@ export class AuthGuardService {
   }
 
  canAccessLogin():boolean {
-  return !this.canActivate();
+  if(!localStorage.getItem('token')) {
+    return true
+  }
+  this.location.back()
+  return false;
+ }
+
+ checkRole(): boolean {
+  const role = localStorage.getItem('role')
+  console.log(role)
+  if (role !== 'admin') {
+    this.location.back()
+    return false
+  }
+  return true;
  }
  
 }
 
 export const guestGuard: CanActivateFn =  (route, state) => {
   return inject(AuthGuardService).canActivate();
+};
+
+export const accessLogin: CanActivateFn =  (route, state) => {
+  return inject(AuthGuardService).canAccessLogin();
+};
+
+export const validRole: CanActivateFn =  (route, state) => {
+  return inject(AuthGuardService).checkRole();
 };

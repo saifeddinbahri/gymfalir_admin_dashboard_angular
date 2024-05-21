@@ -12,7 +12,6 @@ export class EquipmentsService {
 
   getAllEquipments(): Observable<any> {
     const token = localStorage.getItem('token') ?? ''
-    console.log(token)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}` 
