@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { UserItems, url } from '../types';
+import {  url } from '../types';
 import { SocketService } from '../services/socket.service';
 @Component({
   selector: 'app-present',

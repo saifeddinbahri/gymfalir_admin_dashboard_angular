@@ -15,7 +15,7 @@ export class SocketService {
       this.socket.on('admin', (data) => {
         observer.next(data);
       });
-      return () => { this.socket.disconnect(); };  
+      return () => { console.log('left') };  
     });
     return observable;
   }
@@ -25,7 +25,7 @@ export class SocketService {
       this.socket.on('data', (data) => {
         observer.next(data);
       });
-      return () => { this.socket.disconnect(); };  
+      return () => { console.log('data left') };  
     });
     return observable;
   }

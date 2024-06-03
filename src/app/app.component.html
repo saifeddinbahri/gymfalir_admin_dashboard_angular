@@ -1,9 +1,9 @@
 <div class="shadow bg-white mb-5" *ngIf="isLogin">
     <div class="h-16 mx-auto px-5 flex items-center justify-between">
-        <a class="text-2xl hover:text-cyan-500 transition-colors cursor-pointer">GymFlair</a>
+        <a class="text-2xl hover:text-cyan-500 transition-colors cursor-pointer" [routerLink] = "['/']">GymFlair</a>
         
         <ul class="flex items-center gap-5">
-          <li><a class="hover:text-cyan-500 transition-colors" [routerLink] = "['/present']" > Present {{ count }}</a></li>
+          <li><div class="font-medium text-cyan-500 transition-colors border-r-2 border-cyan-500 pr-4" > Present {{ count | addZero }}</div></li>
           <li><a class="hover:text-cyan-500 transition-colors" [routerLink] = "['/equipments']">Equipments</a></li>
           <li><a class="hover:text-cyan-500 transition-colors" [routerLink] = "['/coachs']">Coachs</a></li>
           <li *ngIf="isAdmin"><a class="hover:text-cyan-500 transition-colors" [routerLink] = "['/users']">Users</a></li>

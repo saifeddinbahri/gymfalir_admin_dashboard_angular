@@ -4,11 +4,12 @@ import { NavigationEnd, Router, RouterLink, RouterOutlet, Event } from '@angular
 import { filter, map } from 'rxjs/operators';
 import { SocketService } from './services/socket.service';
 import { ToastComponent } from './toast/toast.component';
+import { AddZeroPipe } from './pipes/add-zero.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule],
+  imports: [RouterOutlet, RouterLink, CommonModule, AddZeroPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit{
   title = 'gym_falir_front';
   isLogin = !!localStorage.getItem('token')
   isAdmin = false
+ 
   count: number = 0
   ngOnInit() {
     this.socketService.getCount().subscribe((data) => {
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit{
         this.showToast(data.user)
       }
     })
+
     this.router.events.pipe(
       filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {

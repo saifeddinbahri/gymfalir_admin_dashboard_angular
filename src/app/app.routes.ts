@@ -18,6 +18,7 @@ import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PresentComponent } from './present/present.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -32,7 +33,7 @@ export const routes: Routes = [
     { path: 'cour/update/:id', component: UpdateCourComponent, canActivate: [guestGuard] },
     { path: 'cour/add', component: AddCourComponent, canActivate: [guestGuard] },
     { path: 'events', component: EventComponent, canActivate: [guestGuard] },
-    { path: 'present', component: PresentComponent, canActivate: [guestGuard] },
+    { path: '', component: DashboardComponent, canActivate: [guestGuard] },
     { path: 'event/update/:id', component: UpdateEventComponent, canActivate: [guestGuard] },
     { path: 'event/add', component: AddEventComponent, canActivate: [guestGuard] },
     { path: 'users', component: UserComponent, canActivate: [guestGuard, validRole] },

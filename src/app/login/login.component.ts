@@ -30,7 +30,7 @@ export class LoginComponent {
             } else {
               localStorage.setItem('token', response.token)
               localStorage.setItem('role', response.role)
-              this.router.navigate(['/equipments'])
+              this.router.navigate(['/'])
             }
           }
         },

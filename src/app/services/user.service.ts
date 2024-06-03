@@ -19,6 +19,10 @@ export class UserService {
      return this.http.get('http://localhost:3002/user', { headers })
   }
 
+  getDashboard(): Observable<any> {
+     return this.http.get('http://localhost:3002/user/dashboard')
+  }
+
   getOneuser(id: String): Observable<any> {
     console.log(id)
     const token = localStorage.getItem('token') ?? ''
